@@ -1,3 +1,5 @@
+# TODO: was inlined in 3a_classify_regions -> remove?
+
 def get_class_mapping():
     return {
         0: 'EarlyS',

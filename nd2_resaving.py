@@ -3,6 +3,7 @@ from pathlib import Path
 from tifffile import imwrite
 from calmutils.imageio.tiff_imagej import save_tiff_imagej
 
+
 def resave_nd2_flexible(
     in_path,
     file_pattern="*.nd2",
@@ -47,6 +48,37 @@ def resave_nd2_flexible_single(
         img = reader.to_xarray()
         pixel_size = list(reader.voxel_size())[::-1]
 
+    xarray_to_tiffs(
+        img,
+        out_path,
+        in_file.stem,
+        split_dimensions,
+        prefixes,
+        use_indices,
+        min_index_len,
+        pixel_size
+    )
+
+
+def xarray_to_tiffs(
+    img,
+    out_directory,
+    out_prefix,
+    split_dimensions=("T", "P", "C"),
+    prefixes={"C": "_ch", "T": "_tp", "P": "_pos", "Z": "_z", "X": "_x", "Y": "_y"},
+    use_indices=True,
+    min_index_len=1,
+    pixel_size = None,
+):
+
+
+    # if no pixel sizes are given, guess from xarray coordinate ticks (difference between adjacent)
+    if pixel_size is None:
+        psz_x = (img.coords['X'].values[1:] - img.coords['X'].values[:-1]).mean() if 'X' in img.coords else 1
+        psz_y = (img.coords['Y'].values[1:] - img.coords['Y'].values[:-1]).mean() if 'Y' in img.coords else 1
+        psz_z = (img.coords['Z'].values[1:] - img.coords['Z'].values[:-1]).mean() if 'Z' in img.coords else 1
+        pixel_size = [psz_z, psz_y, psz_x]
+
     # find which of the selected split dimensions are present
     present_split_dimensions = [d for d in split_dimensions if d in img.dims]
 
@@ -54,10 +86,10 @@ def resave_nd2_flexible_single(
     if len(present_split_dimensions) == 0:
 
         # construct filename, dimension names
-        out_filename = Path(in_file).stem + '.tif'
-        out_filename = out_path / out_filename
+        out_filename = out_prefix + '.tif'
+        out_filename = Path(out_directory) / out_filename
         axes = "".join([d for d in img.dims])
-        
+
         save_tiff_imagej(
             out_filename,
             img.values.squeeze(),
@@ -83,8 +115,8 @@ def resave_nd2_flexible_single(
             filename_idx = idx
 
         # construct out filename
-        out_filename = Path(in_file).stem + "".join(prefixes[d] + i for d, i in zip(present_split_dimensions, filename_idx)) + '.tif'
-        out_filename = out_path / out_filename
+        out_filename = out_prefix + "".join(prefixes[d] + i for d, i in zip(present_split_dimensions, filename_idx)) + '.tif'
+        out_filename = Path(out_directory) / out_filename
 
         # save as tiff
         axes = "".join([d for d in img.dims if d not in split_dimensions])
