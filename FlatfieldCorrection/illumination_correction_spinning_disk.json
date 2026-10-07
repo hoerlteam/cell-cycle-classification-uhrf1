@@ -1,0 +1,47 @@
+[
+    {
+        "objective": "Plan Apo λ 100x Oil",
+        "darkfields": {
+            "405": "20240510-dark_img_avg-488.tif",
+            "488": "20240510-dark_img_avg-488.tif",
+            "561": "20240510-dark_img_avg-640.tif",
+            "640": "20240510-dark_img_avg-640.tif"
+        },
+        "flatfields": {
+            "405": "230824_flatfield_from_BaSiC_ch405.tif",
+            "488": "120824_flatfield_img_488.tif",
+            "561": "120824_flatfield_img_561.tif",
+            "640": "120824_flatfield_img_640.tif"
+        }
+    },
+    {
+        "objective": "Apo TIRF 60x Oil DIC N2",
+        "darkfields": {
+            "405": "20240510-dark_img_avg-488.tif",
+            "488": "20240510-dark_img_avg-488.tif",
+            "561": "20240510-dark_img_avg-640.tif",
+            "640": "20240510-dark_img_avg-640.tif"
+        },
+        "flatfields": {
+            "405": "060924_flatfield_405_60x_from_BaSiC.tif",
+            "488": "030924_flatfield_img_60x_488.tif",
+            "561": "030924_flatfield_img_60x_561.tif",
+            "640": "030924_flatfield_img_60x_640.tif"
+        }
+    },
+    {
+        "objective": "Plan Apo λ 40x",
+        "darkfields": {
+            "405": "20240510-dark_img_avg-488.tif",
+            "488": "20240510-dark_img_avg-488.tif",
+            "561": "20240510-dark_img_avg-640.tif",
+            "640": "20240510-dark_img_avg-640.tif"
+        },
+        "flatfields": {
+            "405": "290824_flatfield_405_40x_from_BaSiC.tif",
+            "488": "120824_flatfield_img__40x_488.tif",
+            "561": "120824_flatfield_img_40x_561.tif",
+            "640": "120824_flatfield_img_40x_640.tif"
+        }
+    }
+]
