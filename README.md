@@ -11,7 +11,7 @@ In our study, we first performed instance segmentation of nuclei using Cellpose,
     - use `1a_resave_nd2_as_tiff.ipynb` to re-save without illumination correction
     - use `1b_resave_with_illumination_correction.ipynb` to re-save with illumination correction (files used can be found in `FlatfieldCorrection`)
 
-2. **Detect cells using Cellpose:** Next, we use Cellpose to perform instance segmentation of nuclei in the images. The notebook `2_cellpose_segmentation.ipynb` can be used to perform this for all files in a folder. We used Cellpose 3 with a model finetuned on manually annotated nuclei of ESCs. The model weights are available under `TODO: models/esc`.
+2. **Detect cells using Cellpose:** Next, we use Cellpose to perform instance segmentation of nuclei in the images. The notebook `2_cellpose_segmentation.ipynb` can be used to perform this for all files in a folder. We used Cellpose 3 with a model finetuned on manually annotated nuclei of ESCs. The model weights we used are available under `cellpose_weights`.
 
 3. **Per-cell classification & feature extraction:**  Next, we perform the S-phase classification of detected cells using a small CNN model plus extract simple features.
 
