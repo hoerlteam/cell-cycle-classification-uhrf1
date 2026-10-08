@@ -8,8 +8,6 @@
         • CSV logging
         • Precision-Recall Curve, Confusion Matrix, Loss/Accuracy Plotting
     - Supports manual continuation of training via interactive input after early stopping
-
------
 '''
 import torch
 import os
@@ -80,12 +78,6 @@ def train_model_input(model, train_loader, val_loader, test_loader, device, init
     plot_all_metrics(epoch_loss_history, batch_loss_history, test_acc_history, val_loss_history)
     all_preds, all_labels = detailed_report(model, test_loader, device)
     plot_precision_recall_curve(model, test_loader, device)
-    with torch.no_grad():
-        for Xs, ys in test_loader:
-            Xs = Xs.to(device)
-            preds = torch.argmax(model(Xs), dim=1).cpu().numpy()
-            all_preds.extend(preds)
-            all_labels.extend(ys.numpy())
 
     return all_preds, all_labels
 
