@@ -15,7 +15,7 @@ In our study, we first performed instance segmentation of nuclei using Cellpose,
 
 3. **Per-cell classification & feature extraction:**  Next, we perform the S-phase classification of detected cells using a small CNN model plus extract simple features.
 
-    - use `3a_classify_regions.ipynb` to classify cells, creating a CSV file with predicted class (e.g. S-phase subphase) and probability for each class. The model information and weights can be found in `TODO: models/`.
+    - use `3a_classify_regions.ipynb` to classify cells, creating a CSV file with predicted class (e.g. S-phase subphase) and probability for each class. The model information and weights can be found in `/resnet/`.
     - use `3b_simple_regionprops.ipynb` to use scikit-image's `regionprops_table` to extract shape / intensity features for all cells
 
 4. **Analysis of combined results:** Finally, we use `4_analysis_cellcycle_rprops` to perform statistical analysis on the combined data frames from step 3 and produce plots for the manuscript.
