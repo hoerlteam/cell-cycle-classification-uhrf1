@@ -1,0 +1,13 @@
+{
+  "weights_file": "best_model.pth",
+  "architecture": "resnet18",
+  "classes": [
+    "EarlyS",
+    "G1G2",
+    "LateS",
+    "MidS",
+    "ambiguous"
+  ],
+  "input_shape": [224, 224],
+  "input_channels": 3
+}
